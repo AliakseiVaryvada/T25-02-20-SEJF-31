@@ -12,9 +12,14 @@ public class CustomLookUpController {
 
         // Create a Dynamic SOQL Query For Fetch Record List with LIMIT 10
         String sQuery;
+
+        if(ObjectName == 'workOrder') {
+            sQuery = 'select id, subject from ' + ObjectName + ' order by createdDate DESC limit 10';
+        }
         if(ObjectName == 'skill') {
             sQuery = 'select id, Description from ' + ObjectName + ' order by createdDate DESC limit 10';
-        } else {
+        }
+        if (ObjectName != 'skill' && ObjectName != 'workOrder'){
             sQuery = 'select id, Name from ' + ObjectName + ' where Name LIKE: searchKey order by createdDate DESC limit 10';
         }
             List <sObject> listOfRecords = Database.query(sQuery);

@@ -23,6 +23,7 @@
               </span>
               <span class="slds-media__body">
                   <span class="slds-listbox__option-text slds-listbox__option-text_entity">
+                      {!v.oRecord.Subject}
                       {!empty(v.oRecord.Description) ? v.oRecord.Name :
                       v.oRecord.Description}</span>
               </span>

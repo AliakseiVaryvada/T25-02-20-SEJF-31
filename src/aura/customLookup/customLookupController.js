@@ -57,8 +57,8 @@
     handleComponentEvent : function(component, event, helper) {
         // get the selected Account record from the COMPONETN event
         var selectedAccountGetFromEvent = event.getParam("recordByEvent");
-        component.set("v.selectedRecord" , selectedAccountGetFromEvent);
 
+        component.set("v.selectedRecord" , selectedAccountGetFromEvent);
         var forclose = component.find("lookup-pill");
         $A.util.addClass(forclose, 'slds-show');
         $A.util.removeClass(forclose, 'slds-hide');

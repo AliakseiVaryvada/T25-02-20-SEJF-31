@@ -44,11 +44,6 @@ public with sharing class NewWorkOrder {
             String description
     ){
 
-        system.debug(status);
-        system.debug(Description);
-        system.debug(workTypeId);
-        system.debug(subject);
-
         WorkOrder workOrder = new WorkOrder(
                 status = status,
                 priority = priority,
@@ -56,9 +51,12 @@ public with sharing class NewWorkOrder {
                 description = description,
                 subject = subject
         );
-
-        insert workOrder;
-
+        try {
+            insert workOrder;
+        } catch (Exception e){
+            throw new AuraHandledException('Something went wrong. Contact with Admin : '
+                    + e.getMessage());
+        }
         return workOrder;
     }
 }

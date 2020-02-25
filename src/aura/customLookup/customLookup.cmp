@@ -22,26 +22,24 @@
 
 
         <label class="slds-form-element__label" for="lookup-348">
-            <abbr class="slds-required" title="required">* </abbr>
             {!v.label}
         </label>
         <!--This part is for display search bar for lookup-->
         <div class="slds-form-element__control">
 
             <div class="slds-input-has-icon slds-input-has-icon--right">
-
                 <!-- This markup is for when an record is selected -->
                 <div aura:id="lookup-pill" class="slds-pill-container slds-hide">
 
 
 
                     <lightning:pill class="pillSize"
+                                    label="{!v.selectedRecord.Description + v.selectedRecord.Name + v.selectedRecord.Subject}"
+                                    name="{!v.selectedRecord.Description + v.selectedRecord.Name + v.selectedRecord.Subject}"
+                                    onremove="{! c.clear }">
 
-                                    label="{!empty(v.selectedRecord.Description) ? v.selectedRecord.Name :
-                                    v.selectedRecord.Description}"
-
-                                    name="{!empty(v.selectedRecord.Description) ? v.selectedRecord.Name :
-                                    v.selectedRecord.Description}" onremove="{! c.clear }">
+                    <!--{!empty(v.selectedRecord.Description) ? v.selectedRecord.Name + v.selectedRecord.subject-->
+                    <!--: v.selectedRecord.Description + v.selectedRecord.subject}"-->
 
                         <aura:set attribute="media">
                             <lightning:icon iconName="{!v.IconName}" size="x-small" alternativeText="{!v.IconName}"/>
