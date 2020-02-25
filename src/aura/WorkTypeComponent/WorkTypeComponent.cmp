@@ -1,7 +1,7 @@
 <aura:component description="WorkTypeComponent"
-                    implements="force:appHostable,flexipage:availableForAllPageTypes"
-                    access="global"
-                    controller="NewWorkType"
+                implements="force:appHostable,lightning:isUrlAddressable,flexipage:availableForAllPageTypes"
+                access="global"
+                controller="NewWorkType"
 >
 
         <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>

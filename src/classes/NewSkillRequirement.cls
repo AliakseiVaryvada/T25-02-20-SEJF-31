@@ -22,8 +22,7 @@ public class NewSkillRequirement {
                 insert skillRequirement;
             } catch (Exception e){
                 throw new AuraHandledException('Something went wrong! Check entered value for' +
-                        ' duplicate or contact with Admin :'
-                        + e.getMessage());
+                        ' duplicate or contact with Admin.');
             }
             return skillRequirement;
 

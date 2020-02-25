@@ -39,8 +39,8 @@ public with sharing class NewItemProduct {
         try {
             insert productItem;
         } catch (Exception e){
-            throw new AuraHandledException('Something went wrong. Contact with Admin : '
-                    + e.getMessage());
+            throw new AuraHandledException('Something went wrong! Check entered value for' +
+                    ' duplicate or contact with Admin');
         }
 
         return productItem;

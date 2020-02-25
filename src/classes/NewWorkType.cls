@@ -39,8 +39,8 @@ public class NewWorkType {
         try {
             insert workType;
         } catch (Exception e){
-            throw new AuraHandledException('Something went wrong. Contact with Admin : '
-                    + e.getMessage());
+            throw new AuraHandledException('Something went wrong! Check entered value for' +
+                    ' duplicate or contact with Admin');
         }
 
         return workType;

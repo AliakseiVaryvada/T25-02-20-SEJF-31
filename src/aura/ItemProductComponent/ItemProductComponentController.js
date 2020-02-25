@@ -65,6 +65,9 @@
                             "componentName": "c__WorkTypeComponent"
                         }
                     };
+                    component.set("v.pageReference", pageReference);
+                    event.preventDefault();
+                    navService.navigate(pageReference);
 
                     var toastEvent = $A.get("e.force:showToast");
                     toastEvent.setParams({
