@@ -6,7 +6,7 @@ public class NewWorkType {
 
     //init function for page
     @AuraEnabled
-    public static List<String> newWorkTypeInit(){
+    public static List<String> newWorkType(){
 
         List<String> durationTypeList = new List<String>();
         Schema.DescribeFieldResult fieldResult = WorkType.DurationType.getDescribe();
@@ -20,19 +20,13 @@ public class NewWorkType {
     }
 
     @AuraEnabled
-    public static WorkType newWorkType(
+    public static WorkType newWorkTypeAdd(
             String WorkTypeName,
             String Description,
-            Integer EstimatedDuration,
+            Double EstimatedDuration,
             String DurationType,
             Boolean ServiceAppointment
     ){
-
-        system.debug(WorkTypeName);
-        system.debug(Description);
-        system.debug(EstimatedDuration);
-        system.debug(DurationType);
-        system.debug(ServiceAppointment);
 
         WorkType workType = new WorkType(
                 Name = WorkTypeName,
@@ -42,7 +36,12 @@ public class NewWorkType {
                 ShouldAutoCreateSvcAppt = ServiceAppointment
         );
 
-        insert workType;
+        try {
+            insert workType;
+        } catch (Exception e){
+            throw new AuraHandledException('Something went wrong. Contact with Admin : '
+                    + e.getMessage());
+        }
 
         return workType;
 

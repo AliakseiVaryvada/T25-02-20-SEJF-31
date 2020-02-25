@@ -1,16 +1,16 @@
-    <aura:component description="WorkTypeComponent"
+<aura:component description="WorkTypeComponent"
                     implements="force:appHostable,flexipage:availableForAllPageTypes"
                     access="global"
                     controller="NewWorkType"
-    >
+>
 
         <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
         <aura:attribute name="HideSpinner" type="Boolean" default="false"/>
         <aura:attribute name="WorkTypeName" type="String"/>
         <aura:attribute name="Description" type="String"/>
-        <aura:attribute name="EstimatedDuration" type="Integer"/>
-        <aura:attribute name="DurationType" type="String"/>
+        <aura:attribute name="EstimatedDuration" type="Double"/>
+        <aura:attribute name="DurationType" type="String" default = "Hours"/>
         <aura:attribute name="ServiceAppointment" type="Boolean" default="false"/>
         <aura:attribute name="DurationTypeList" type="List"/>
 
@@ -19,36 +19,39 @@
 
         <lightning:navigation aura:id="navService"/>
 
-        <aura:renderIf isTrue="{!v.HideSpinner}">
-            <div class="slds-spinner_container">
-                <div class="slds-spinner--brand
+        <div class="slds-form-element slds-align_absolute-center slds-m-top_x-large">
+            <div class="slds-card slds-p-around--xx-large" style="width: 50%">
+
+                <aura:renderIf isTrue="{!v.HideSpinner}">
+                    <div class="slds-spinner_container">
+                        <div class="slds-spinner--brand
                     slds-spinner
                     slds-spinner--large"
-                     role="alert">
+                             role="alert">
 
-                    <div class="slds-spinner__dot-a"></div>
-                    <div class="slds-spinner__dot-b"></div>
-                </div>
-            </div>
-        </aura:renderIf>
+                            <div class="slds-spinner__dot-a"></div>
+                            <div class="slds-spinner__dot-b"></div>
+                        </div>
+                    </div>
+                </aura:renderIf>
 
-        <div class="slds-form-element slds-align_absolute-center slds-m-top_x-large">
-            <div class="slds-card slds-p-around--xx-large" style="width: 90%">
-                <div>
-                    <p class="slds-text-align--center, slds-text-heading_large">New Work Type</p>
+                <div class="slds-text-align--center">
+                    <p class="slds-text-align--center,
+                     slds-text-heading_large slds-border_bottom">New Work Type</p>
                     <form>
 
-                        <div class="slds-form-element__control field slds-align_absolute-center">
+                        <div class="slds-form-element slds-align_absolute-center slds-p-bottom--small">
 
                             <lightning:input
                                     label="Work Type Name:"
                                     name="work-type-name"
                                     value="{!v.WorkTypeName}"
-                                    required="true"/>
+                                    required="true"
+                            />
 
                         </div>
 
-                        <div class="slds-form-element__control field slds-align_absolute-center">
+                        <div class="slds-form-element slds-align_absolute-center slds-p-bottom--small">
 
                             <lightning:input label="Description:"
                                              type="text"
@@ -56,7 +59,7 @@
                                              name="description"/>
                         </div>
 
-                        <div class="slds-form-element__control field slds-align_absolute-center">
+                        <div class="slds-form-element slds-align_absolute-center slds-p-bottom--small">
 
                             <lightning:input label="Estimated Duration:"
                                              type="Number"
@@ -66,7 +69,7 @@
                                              required="true"/>
                         </div>
 
-                        <div class="slds-form-element__control field slds-align_absolute-center">
+                        <div class="slds-form-element slds-align_absolute-center slds-p-bottom--small">
 
 
 
@@ -74,9 +77,6 @@
                                               required="true"
                                               label="Duration Type:"
                                               value="{!v.DurationType}">
-
-                                <!--<option>Hours</option>-->
-                                <!--<option>Minutes</option>-->
 
                                 <aura:iteration items="{!v.DurationTypeList}" indexVar="key" var="type">
                                     <option>{!type}</option>
@@ -87,19 +87,19 @@
 
                         </div>
 
-                        <div class="slds-form-element__control field slds-align_absolute-center">
+                        <div class="slds-p-bottom--small">
                             <lightning:input type="checkbox"
                                              label="Auto-Create Service Appointment"
                                              name="ServiceAppointment"
                                              checked="{!v.ServiceAppointment}"/>
                         </div>
 
-                        <div class="slds-align_absolute-center" style="height:4rem">
-                            <lightning:button class="btn-login" variant="Brand" label="Submit" onclick="{!c.submitButton}"/>
+                        <div class="slds-text-align_right slds-p-top_small">
+                            <lightning:button variant="Brand" label="Next" onclick="{!c.submitButton}"/>
                         </div>
 
                     </form>
                 </div>
             </div>
         </div>
-    </aura:component>
+</aura:component>

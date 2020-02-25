@@ -49,7 +49,6 @@
                      slds-text-heading_large slds-border_bottom">New Work Order Limit Item</p>
                     <form>
 
-
                         <div class="slds-grid slds-gutters slds-m-right--xxx-small slds-p-bottom--small slds-p-top--small">
                             <lightning:select name="status"
                                               label="Status:"

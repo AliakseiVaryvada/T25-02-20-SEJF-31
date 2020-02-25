@@ -55,6 +55,15 @@
                 component.set("v.pageReference", pageReference);
                 event.preventDefault();
                 navService.navigate(pageReference);
+
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    title: 'Success',
+                    type: 'success',
+                    message: 'Operation Complete'
+                });
+                toastEvent.fire();
+
             } else {
                 //error Case
                 var errorMsg = actionResult.getError()[0].message;
@@ -68,13 +77,6 @@
             }
             component.set("v.HideSpinner", false);
 
-            var toastEvent = $A.get("e.force:showToast");
-            toastEvent.setParams({
-                title: 'Success',
-                type: 'success',
-                message: 'Operation Complete'
-            });
-            toastEvent.fire();
         });
         $A.enqueueAction(action);
     }

@@ -1196,10 +1196,6 @@
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="WorkTypePage" />
-                            <option name="selected" value="true" />
-                          </MetadataEntry>
-                          <MetadataEntry>
                             <option name="name" value="SkillRequirementComponent" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
