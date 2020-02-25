@@ -84,9 +84,11 @@
                         </div>
 
                         <div class="slds-text-align_right">
-                            <lightning:button variant="Success" label="Save and New" onclick="{!c.submitButton}"/>
+                            <lightning:button variant="Brand" label="Save and New" onclick="{!c.submitButton}"/>
                         </div>
-
+                        <div class="slds-text-align_right slds-p-top_small">
+                            <lightning:button variant="Success" label="Save and Exit" onclick="{!c.toProductItems}"/>
+                        </div>
 
                     </form>
                 </div>
