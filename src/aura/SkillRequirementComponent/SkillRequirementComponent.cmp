@@ -1,0 +1,91 @@
+<!--
+ - Created by aliaksei on 24.2.20.
+ -->
+
+<aura:component description="SkillRequirementComponent"
+                implements="force:appHostable,lightning:isUrlAddressable,flexipage:availableForAllPageTypes"
+                access="global"
+                controller="NewSkillRequirement"
+>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <aura:attribute name="pageReference" type="Object"/>
+
+    <aura:attribute name="idValueWorkType" type="String"/>
+    <aura:attribute name="nameValueWorkType" type="String"/>
+
+
+    <aura:attribute name="HideSpinner" type="Boolean" default="false"/>
+    <aura:attribute name="WorkTypeName" type="String"/>
+    <aura:attribute name="Description" type="String"/>
+    <aura:attribute name="EstimatedDuration" type="Integer"/>
+    <aura:attribute name="DurationType" type="String"/>
+    <aura:attribute name="ServiceAppointment" type="Boolean" default="false"/>
+    <aura:attribute name="DurationTypeList" type="List"/>
+    <aura:attribute name="url" type="String"/>
+    <aura:attribute name="SkillLevel" type="Integer"/>
+
+
+    <aura:attribute name="selectedLookUpRecordSkills" type="sObject" default="{}"/>
+    <aura:attribute name="selectedLookUpRecordWorkType" type="sObject" default="{}"/>
+
+
+
+
+
+    <lightning:navigation aura:id="navService"/>
+
+    <aura:renderIf isTrue="{!v.HideSpinner}">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner--brand
+                    slds-spinner
+                    slds-spinner--large"
+                 role="alert">
+
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </aura:renderIf>
+
+    <div class="slds-form-element slds-align_absolute-center slds-m-top_x-large">
+        <div class="slds-card slds-p-around--xx-large" style="width: 90%">
+            <div>
+                <p class="slds-text-align--center, slds-text-heading_large">New Work Type</p>
+                <form>
+
+
+                    <div class="slds-form-element__control field slds-align_absolute-center">
+
+                        <c:customLookup objectAPIName="worktype" IconName="standard:work_type" selectedRecord="{!v.selectedLookUpRecordWorkType}" label="WorkType"/>
+
+                    </div>
+
+                    <div class="slds-form-element__control field slds-align_absolute-center">
+
+                        <c:customLookup objectAPIName="skill" IconName="standard:resource_skill" selectedRecord="{!v.selectedLookUpRecordSkills}" label="Skill"/>
+
+                    </div>
+
+
+                    <div class="slds-form-element__control field slds-align_absolute-center">
+                        <lightning:input label="Skill Level:"
+                                         type="number"
+                                         name="estimated-duration"
+                                         value="{!v.SkillLevel}"
+                                         max="10"
+                                         min="0"/>
+                    </div>
+
+
+                    <div class="slds-align_absolute-center" style="height:4rem">
+                        <lightning:button class="btn-login" variant="Brand" label="Submit" onclick="{!c.submitButton}"/>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</aura:component>

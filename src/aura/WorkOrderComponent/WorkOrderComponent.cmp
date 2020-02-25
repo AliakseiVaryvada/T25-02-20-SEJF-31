@@ -1,0 +1,122 @@
+<!--
+ - Created by aliaksei on 24.2.20.
+ -->
+    <aura:component description="WorkOrderComponent"
+                    implements="force:appHostable,lightning:isUrlAddressable,flexipage:availableForAllPageTypes"
+                    access="global"
+                    controller="NewWorkOrder"
+
+    >
+
+        <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+        <aura:attribute name="pageReference" type="Object"/>
+
+        <aura:attribute name="subject" type="String"/>
+        <aura:attribute name="description" type="String"/>
+
+
+        <aura:attribute name="HideSpinner" type="Boolean" default="false"/>
+
+        <aura:attribute name="url" type="String"/>
+
+        <aura:attribute name="status" type="String" default="New"/>
+        <aura:attribute name="priority" type="String" default="Low"/>
+
+        <aura:attribute name="statusList" type="List"/>
+        <aura:attribute name="priorityList" type="List"/>
+
+        <aura:attribute name="quantityOnHand" type="Double"/>
+        <aura:attribute name="serialNumber" type="String"/>
+
+
+        <aura:attribute name="selectedLookUpRecordWorkType" type="sObject" default="{}"/>
+
+
+
+
+        <lightning:navigation aura:id="navService"/>
+
+        <aura:renderIf isTrue="{!v.HideSpinner}">
+            <div class="slds-spinner_container">
+                <div class="slds-spinner--brand
+                    slds-spinner
+                    slds-spinner--large"
+                     role="alert">
+
+                    <div class="slds-spinner__dot-a"></div>
+                    <div class="slds-spinner__dot-b"></div>
+                </div>
+            </div>
+        </aura:renderIf>
+
+        <div class="slds-form-element slds-align_absolute-center slds-m-top_x-large">
+            <div class="slds-card slds-p-around--xx-large" style="width: 90%">
+                <div>
+                    <p class="slds-text-align--center, slds-text-heading_large">New Work Order</p>
+                    <form>
+
+
+                        <div class="slds-form-element__control field slds-align_absolute-center">
+                            <lightning:select name="status"
+                                              label="Status:"
+                                              value="{!v.status}">
+
+                                <aura:iteration items="{!v.statusList}" indexVar="key" var="status">
+                                <option>{!status}</option>
+                                </aura:iteration>
+
+                            </lightning:select>
+                        </div>
+
+                        <div class="slds-form-element__control field slds-align_absolute-center">
+                            <lightning:select name="priority"
+                                              label="Priority:"
+                                              value="{!v.priority}">
+
+                                <aura:iteration items="{!v.priorityList}" indexVar="key" var="priority">
+                                    <option>{!priority}</option>
+                                </aura:iteration>
+
+                            </lightning:select>
+                        </div>
+
+
+                        <div class="slds-form-element__control field slds-align_absolute-center">
+
+                            <c:customLookup objectAPIName="workType" IconName="standard:work_type"
+                                            selectedRecord="{!v.selectedLookUpRecordWorkType}"
+                                            label="Work Type:"/>
+
+                        </div>
+
+
+                        <div class="slds-form-element__control field slds-align_absolute-center">
+                            <lightning:input label="Subject:"
+                                             type="text"
+                                             name="subject"
+                                             value="{!v.subject}"/>
+                        </div>
+
+
+
+
+                        <div class="slds-form-element__control field slds-align_absolute-center">
+                            <lightning:textarea name="description"
+                                                value="{!v.description}"
+                                                label="Description:" />
+                        </div>
+
+                        <div class="slds-align_absolute-center" style="height:4rem">
+                            <lightning:button class="btn-login" variant="Brand" label="Next" onclick="{!c.submitButton}"/>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </aura:component>
+
