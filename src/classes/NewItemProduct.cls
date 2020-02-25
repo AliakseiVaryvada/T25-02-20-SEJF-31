@@ -28,13 +28,6 @@ public with sharing class NewItemProduct {
 
     ){
 
-        system.debug(locationId);
-        system.debug(productId);
-        system.debug(quantityUnit);
-        system.debug(quantityOnHand);
-        System.debug(serialNumber);
-
-
         ProductItem productItem= new ProductItem(
                 Product2Id = productId,
                 LocationId = locationId,
@@ -43,8 +36,12 @@ public with sharing class NewItemProduct {
                 SerialNumber = serialNumber
         );
 
-        system.debug(productItem);
-        insert productItem;
+        try {
+            insert productItem;
+        } catch (Exception e){
+            throw new AuraHandledException('Something went wrong. Contact with Admin : '
+                    + e.getMessage());
+        }
 
         return productItem;
 

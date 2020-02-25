@@ -40,7 +40,7 @@
                      slds-text-heading_large slds-border_bottom">New Work Type</p>
                     <form>
 
-                        <div class="slds-form-element slds-align_absolute-center slds-p-bottom--small">
+                        <div class="slds-form-element slds-align_absolute-center slds-p-bottom--small slds-p-top--small">
 
                             <lightning:input
                                     label="Work Type Name:"

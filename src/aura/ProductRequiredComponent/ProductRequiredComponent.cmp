@@ -35,53 +35,64 @@
 
         <lightning:navigation aura:id="navService"/>
 
-        <aura:renderIf isTrue="{!v.HideSpinner}">
-            <div class="slds-spinner_container">
-                <div class="slds-spinner--brand
+        <div class="slds-form-element slds-align_absolute-center slds-m-top_x-large">
+            <div class="slds-card slds-p-around--xx-large" style="width: 50%">
+
+                <aura:renderIf isTrue="{!v.HideSpinner}">
+                    <div class="slds-spinner_container">
+                        <div class="slds-spinner--brand
                     slds-spinner
                     slds-spinner--large"
-                     role="alert">
+                             role="alert">
 
-                    <div class="slds-spinner__dot-a"></div>
-                    <div class="slds-spinner__dot-b"></div>
-                </div>
-            </div>
-        </aura:renderIf>
+                            <div class="slds-spinner__dot-a"></div>
+                            <div class="slds-spinner__dot-b"></div>
+                        </div>
+                    </div>
+                </aura:renderIf>
 
-        <div class="slds-form-element slds-align_absolute-center slds-m-top_x-large">
-            <div class="slds-card slds-p-around--xx-large" style="width: 90%">
-                <div>
-                    <p class="slds-text-align--center, slds-text-heading_large">New Work Type</p>
+                <div class="slds-text-align--center">
+                    <p class="slds-text-align--center,
+                     slds-text-heading_large slds-border_bottom">New Product Required</p>
                     <form>
 
 
-                        <div class="slds-form-element__control field slds-align_absolute-center">
+                        <div class="slds-grid slds-align-content-center slds-p-top--small">
+                            <div class="slds-size--2-of-4">
 
-                            <c:customLookup objectAPIName="worktype" IconName="standard:work_type" selectedRecord="{!v.selectedLookUpRecordWorkType}" label="WorkType"/>
-
+                            <c:customLookup objectAPIName="worktype"
+                                            IconName="standard:work_type"
+                                            selectedRecord="{!v.selectedLookUpRecordWorkType}" label="*Parent Record:"/>
+                            </div>
                         </div>
 
-                        <div class="slds-form-element__control field slds-align_absolute-center">
+                        <div class="slds-grid slds-align-content-center slds-p-top--small">
+                            <div class="slds-size--2-of-4">
 
-                            <c:customLookup objectAPIName="product2" IconName="standard:product" selectedRecord="{!v.selectedLookUpRecordProduct}" label="Skill"/>
-
+                            <c:customLookup objectAPIName="product2"
+                                            IconName="standard:product"
+                                            selectedRecord="{!v.selectedLookUpRecordProduct}"
+                                            label="*Product Required:"/>
+                            </div>
                         </div>
 
 
-                        <div class="slds-form-element__control field slds-align_absolute-center">
+                        <div class="slds-grid slds-align-content-center slds-p-top--small">
                             <lightning:input label="Quantity Required:"
                                              type="number"
                                              name="estimated-duration"
                                              value="{!v.quantityRequired}"
                                              step="0.01"
-                                             min="0"/>
+                                             min="0"
+                                             class="slds-size--2-of-4"/>
                         </div>
 
 
-                        <div class="slds-form-element__control field slds-align_absolute-center">
+                        <div class="slds-grid slds-align-content-center slds-p-top--small">
                         <lightning:select name="quantity-unit"
                                           label="Quantity Unit Of Measure:"
-                                          value="{!v.quantityUnit}">
+                                          value="{!v.quantityUnit}"
+                                          class="slds-size--2-of-4">
 
                             <aura:iteration items="{!v.quantityUnitList}" indexVar="key" var="type">
                                 <option>{!type}</option>
@@ -90,8 +101,8 @@
                         </lightning:select>
                         </div>
 
-                        <div class="slds-align_absolute-center" style="height:4rem">
-                            <lightning:button class="btn-login" variant="Brand" label="Submit" onclick="{!c.submitButton}"/>
+                        <div class="slds-text-align_right slds-p-top_small">
+                            <lightning:button variant="Brand" label="Next" onclick="{!c.submitButton}"/>
                         </div>
 
                     </form>

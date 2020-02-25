@@ -2,114 +2,118 @@
  - Created by aliaksei on 24.2.20.
  -->
 <aura:component description="ItemProductComponent"
-                    implements="force:appHostable,lightning:isUrlAddressable,flexipage:availableForAllPageTypes"
-                    access="global"
-                    controller="NewItemProduct"
-    >
+                implements="force:appHostable,lightning:isUrlAddressable,flexipage:availableForAllPageTypes"
+                access="global"
+                controller="NewItemProduct"
+>
 
-        <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
-        <aura:attribute name="pageReference" type="Object"/>
+    <aura:attribute name="pageReference" type="Object"/>
 
-        <aura:attribute name="idValueWorkType" type="String"/>
-        <aura:attribute name="nameValueWorkType" type="String"/>
-
-
-        <aura:attribute name="HideSpinner" type="Boolean" default="false"/>
-
-        <aura:attribute name="url" type="String"/>
-
-        <aura:attribute name="quantityUnit" type="String" default="Each"/>
-
-        <aura:attribute name="quantityUnitList" type="List"/>
-
-        <aura:attribute name="quantityOnHand" type="Double"/>
-        <aura:attribute name="serialNumber" type="String"/>
+    <aura:attribute name="idValueWorkType" type="String"/>
+    <aura:attribute name="nameValueWorkType" type="String"/>
 
 
-        <aura:attribute name="selectedLookUpRecordProduct" type="sObject" default="{}"/>
-        <aura:attribute name="selectedLookUpRecordLocation" type="sObject" default="{}"/>
+    <aura:attribute name="HideSpinner" type="Boolean" default="false"/>
+
+    <aura:attribute name="url" type="String"/>
+
+    <aura:attribute name="quantityUnit" type="String" default="Each"/>
+
+    <aura:attribute name="quantityUnitList" type="List"/>
+
+    <aura:attribute name="quantityOnHand" type="Double"/>
+    <aura:attribute name="serialNumber" type="String"/>
 
 
+    <aura:attribute name="selectedLookUpRecordProduct" type="sObject" default="{}"/>
+    <aura:attribute name="selectedLookUpRecordLocation" type="sObject" default="{}"/>
 
 
-        <lightning:navigation aura:id="navService"/>
+    <lightning:navigation aura:id="navService"/>
 
-        <aura:renderIf isTrue="{!v.HideSpinner}">
-            <div class="slds-spinner_container">
-                <div class="slds-spinner--brand
+    <div class="slds-form-element slds-align_absolute-center slds-m-top_x-large">
+        <div class="slds-card slds-p-around--xx-large" style="width: 50%">
+
+            <aura:renderIf isTrue="{!v.HideSpinner}">
+                <div class="slds-spinner_container">
+                    <div class="slds-spinner--brand
                     slds-spinner
                     slds-spinner--large"
-                     role="alert">
+                         role="alert">
 
-                    <div class="slds-spinner__dot-a"></div>
-                    <div class="slds-spinner__dot-b"></div>
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
                 </div>
-            </div>
-        </aura:renderIf>
+            </aura:renderIf>
 
-        <div class="slds-form-element slds-align_absolute-center slds-m-top_x-large">
-            <div class="slds-card slds-p-around--xx-large" style="width: 90%">
-                <div>
-                    <p class="slds-text-align--center, slds-text-heading_large">New Work Type</p>
-                    <form>
+            <div class="slds-text-align--center">
+                <p class="slds-text-align--center,
+                     slds-text-heading_large slds-border_bottom">New Product Item</p>
+                <form>
 
 
-                        <div class="slds-form-element__control field slds-align_absolute-center">
+                    <div class="slds-grid slds-align-content-center slds-p-top--small">
+                        <div class="slds-size--2-of-4 slds-p-right--small">
+
 
                             <c:customLookup objectAPIName="product2" IconName="standard:work_type"
                                             selectedRecord="{!v.selectedLookUpRecordProduct}"
-                                            label="Product Name:"/>
-
+                                            label="*Product Name:"/>
                         </div>
-
-                        <div class="slds-form-element__control field slds-align_absolute-center">
+                        <div class="slds-size--2-of-4 ">
 
                             <c:customLookup objectAPIName="Location" IconName="standard:location"
                                             selectedRecord="{!v.selectedLookUpRecordLocation}"
-                                            label="Location:"/>
+                                            label="*Location:"/>
 
                         </div>
+                    </div>
 
 
-                        <div class="slds-form-element__control field slds-align_absolute-center">
-                            <lightning:input label="Quantity Required:"
-                                             type="number"
-                                             name="estimated-duration"
-                                             value="{!v.quantityOnHand}"
-                                             step="0.01"
-                                             min="0"/>
-                        </div>
+                    <div class="slds-grid slds-align-content-center slds-p-top--small">
+
+                        <lightning:input label="Quantity On Hand:"
+                                         type="number"
+                                         required="true"
+                                         name="estimated-duration"
+                                         value="{!v.quantityOnHand}"
+                                         step="0.01"
+                                         min="0"
+                                         class="slds-size--2-of-4 slds-p-right--small"/>
+
+                        <lightning:select name="quantity-unit"
+                                          label="Quantity Unit Of Measure:"
+                                          value="{!v.quantityUnit}"
+                                          class="slds-size--2-of-4">
+
+                            <aura:iteration items="{!v.quantityUnitList}" indexVar="key" var="type">
+                                <option>{!type}</option>
+                            </aura:iteration>
+
+                        </lightning:select>
+                    </div>
 
 
-                        <div class="slds-form-element__control field slds-align_absolute-center">
-                            <lightning:select name="quantity-unit"
-                                              label="Quantity Unit Of Measure:"
-                                              value="{!v.quantityUnit}">
+                    <div class="slds-grid slds-align-content-center slds-p-top--small">
 
-                                <aura:iteration items="{!v.quantityUnitList}" indexVar="key" var="type">
-                                    <option>{!type}</option>
-                                </aura:iteration>
+                        <lightning:input label="Serial Number:"
+                                         type="text"
+                                         name="serial-number"
+                                         value="{!v.serialNumber}"
+                                         class="slds-size--2-of-4"/>
+                    </div>
 
-                            </lightning:select>
-                        </div>
+                    <div class="slds-text-align_right slds-p-top_small">
+                        <lightning:button variant="Brand" label="Save and New" onclick="{!c.submitButton}"/>
+                    </div>
 
-                        <div class="slds-form-element__control field slds-align_absolute-center">
-                            <lightning:input label="Serial Number:"
-                                             type="text"
-                                             name="serial-number"
-                                             value="{!v.serialNumber}"/>
-                        </div>
-
-                        <div class="slds-align_absolute-center" style="height:4rem">
-                            <lightning:button class="btn-login" variant="Brand" label="Save" onclick="{!c.submitButton}"/>
-                        </div>
-
-
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
+    </div>
 
 
 </aura:component>

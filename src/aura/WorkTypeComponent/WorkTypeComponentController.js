@@ -68,7 +68,6 @@
                     component.set("v.pageReference", pageReference);
                     event.preventDefault();
                     navService.navigate(pageReference);
-                    console.log(actionResult.getReturnValue());
                     var toastEvent = $A.get("e.force:showToast");
                     toastEvent.setParams({
                         title: 'Success',

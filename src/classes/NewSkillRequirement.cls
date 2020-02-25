@@ -18,8 +18,13 @@ public class NewSkillRequirement {
                     RelatedRecordId = workTypeObj.id
             );
 
-            insert skillRequirement;
-
+            try {
+                insert skillRequirement;
+            } catch (Exception e){
+                throw new AuraHandledException('Something went wrong! Check entered value for' +
+                        ' duplicate or contact with Admin :'
+                        + e.getMessage());
+            }
             return skillRequirement;
 
         }

@@ -27,12 +27,6 @@
                 Double quantityRequired
         ){
 
-            system.debug(workTypeObj);
-            system.debug(productObj);
-            system.debug(quantityUnit);
-            system.debug(quantityRequired);
-
-
             ProductRequired productRequired = new ProductRequired(
                     Product2Id = productObj.id,
                     ParentRecordId = workTypeObj.id,
@@ -40,7 +34,13 @@
                     QuantityUnitOfMeasure = quantityUnit
             );
 
-            insert productRequired;
+            try {
+                insert productRequired;
+            } catch (Exception e){
+                throw new AuraHandledException('Something went wrong! Check entered value for' +
+                        ' duplicate or contact with Admin :'
+                        + e.getMessage());
+            }
 
             return productRequired;
 

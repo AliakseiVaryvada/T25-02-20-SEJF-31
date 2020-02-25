@@ -19,7 +19,7 @@
 
     },
     submitButton : function(component, event, helper) {
-        console.log('hee')
+
         var workTypeObj = component.get("v.selectedLookUpRecordWorkType");
         var workOrderObj = component.get("v.selectedLookUpRecordWorkOrder");
         var status = component.get("v.status");
@@ -52,8 +52,6 @@
                 if (state === 'SUCCESS') {
 
                     component.set("v.HideSpinner", true);
-
-                    var idValue = actionResult.getReturnValue()
 
                     var pageReference = {
                         type: 'standard__component',

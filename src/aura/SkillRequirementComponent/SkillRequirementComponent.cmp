@@ -8,8 +8,6 @@
                 controller="NewSkillRequirement"
 >
 
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-
     <aura:attribute name="pageReference" type="Object"/>
 
     <aura:attribute name="idValueWorkType" type="String"/>
@@ -36,51 +34,58 @@
 
     <lightning:navigation aura:id="navService"/>
 
-    <aura:renderIf isTrue="{!v.HideSpinner}">
-        <div class="slds-spinner_container">
-            <div class="slds-spinner--brand
+    <div class="slds-form-element slds-align_absolute-center slds-m-top_x-large">
+        <div class="slds-card slds-p-around--xx-large" style="width: 50%">
+
+            <aura:renderIf isTrue="{!v.HideSpinner}">
+                <div class="slds-spinner_container">
+                    <div class="slds-spinner--brand
                     slds-spinner
                     slds-spinner--large"
-                 role="alert">
+                         role="alert">
 
-                <div class="slds-spinner__dot-a"></div>
-                <div class="slds-spinner__dot-b"></div>
-            </div>
-        </div>
-    </aura:renderIf>
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                </div>
+            </aura:renderIf>
 
-    <div class="slds-form-element slds-align_absolute-center slds-m-top_x-large">
-        <div class="slds-card slds-p-around--xx-large" style="width: 90%">
-            <div>
-                <p class="slds-text-align--center, slds-text-heading_large">New Work Type</p>
+            <div class="slds-text-align--center">
+                <p class="slds-text-align--center,
+                     slds-text-heading_large slds-border_bottom">Skill Requirement</p>
                 <form>
 
 
-                    <div class="slds-form-element__control field slds-align_absolute-center">
-
-                        <c:customLookup objectAPIName="worktype" IconName="standard:work_type" selectedRecord="{!v.selectedLookUpRecordWorkType}" label="WorkType"/>
-
+                    <div class="slds-grid slds-align-content-center slds-p-top--small">
+                        <div class="slds-size--2-of-4">
+                            <c:customLookup objectAPIName="worktype"
+                                            IconName="standard:work_type"
+                                            selectedRecord="{!v.selectedLookUpRecordWorkType}" label="*Required For:"/>
+                        </div>
                     </div>
 
-                    <div class="slds-form-element__control field slds-align_absolute-center">
-
-                        <c:customLookup objectAPIName="skill" IconName="standard:resource_skill" selectedRecord="{!v.selectedLookUpRecordSkills}" label="Skill"/>
-
+                    <div class="slds-grid slds-align-content-center slds-p-top--small">
+                        <div class="slds-size--2-of-4">
+                        <c:customLookup objectAPIName="skill"
+                                        IconName="standard:resource_skill"
+                                        selectedRecord="{!v.selectedLookUpRecordSkills}" label="*Skill Required:"/>
+                        </div>
                     </div>
 
 
-                    <div class="slds-form-element__control field slds-align_absolute-center">
-                        <lightning:input label="Skill Level:"
+                    <div class="slds-grid slds-align-content-center slds-p-top--small">
+                        <lightning:input label="Skill Level(0-10):"
                                          type="number"
                                          name="estimated-duration"
                                          value="{!v.SkillLevel}"
                                          max="10"
-                                         min="0"/>
+                                         min="0"
+                                         class="slds-size--2-of-4"/>
                     </div>
 
 
-                    <div class="slds-align_absolute-center" style="height:4rem">
-                        <lightning:button class="btn-login" variant="Brand" label="Submit" onclick="{!c.submitButton}"/>
+                    <div class="slds-text-align_right slds-p-top_small">
+                        <lightning:button variant="Brand" label="Next" onclick="{!c.submitButton}"/>
                     </div>
 
                 </form>
