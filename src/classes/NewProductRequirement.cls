@@ -35,7 +35,7 @@
             );
 
             try {
-                upsert productRequired;
+                insert productRequired;
             } catch (Exception e){
                 throw new AuraHandledException('Something went wrong! Check entered value for' +
                         ' duplicate or contact with Admin.');

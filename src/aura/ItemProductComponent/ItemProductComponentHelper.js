@@ -13,7 +13,7 @@
         var navService = component.find("navService");
 
         if (locationObj.Id == undefined || productObj.Id == undefined || quantityOnHand == undefined) {
-            var errorMsg = 'Please, select Location and Product !'
+            var errorMsg = 'Please, fill empty fields!'
             var toastEvent = $A.get("e.force:showToast");
             toastEvent.setParams({
                 title:  'Warning',

@@ -46,7 +46,7 @@
                 </aura:renderIf>
                 <div class="slds-text-align--center">
                     <p class="slds-text-align--center,
-                     slds-text-heading_large slds-border_bottom">New Work Order Limit Item</p>
+                     slds-text-heading_large slds-border_bottom">New Work Order Line Item</p>
                     <form>
 
                         <div class="slds-grid slds-gutters slds-m-right--xxx-small slds-p-bottom--small slds-p-top--small">
